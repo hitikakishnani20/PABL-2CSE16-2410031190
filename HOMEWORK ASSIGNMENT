@@ -1,1 +1,283 @@
 PROBLEM 1
+Reverse an array (in place)
+
+arr = [1, 4, 3, 2, 6, 5]
+
+n = len(arr)
+for i in range(n // 2):
+    arr[i], arr[n - i - 1] = arr[n - i - 1], arr[i]
+
+print("Reversed array:", arr)
+
+
+PROBLEM 2
+FIND MINIMUM AND MAXIMUM IN AN ARRAY
+
+arr = [1, 4, 3, 5, 8, 6]
+
+minimum = arr[0]
+maximum = arr[0]
+
+for i in arr:
+    if i < minimum:
+        minimum = i
+    if i > maximum:
+        maximum = i
+
+print("Minimum:", minimum)
+print("Maximum:", maximum)
+
+
+
+PROBLEM 3
+Kth SMALLEST ELEMENT IN AN ARRAY
+
+arr = [10, 5, 4, 3, 48, 6, 2, 33, 53, 10]
+k = 4
+
+arr.sort()
+
+print(f"{k}th smallest element is:", arr[k - 1])
+
+
+
+PROBLEM 4
+UNION OF TWO ARRAYS
+
+a = [1, 2, 3, 2, 1]
+b = [3, 2, 3, 3, 2]
+
+union_set = set(a) | set(b)
+union_list = sorted(list(union_set))
+
+print("Union of arrays:", union_list)
+
+
+PROBLEM 5
+FINDING THE LARGEST ELEMENT IN AN ARRAY
+
+arr = [1, 8, 7, 56, 90]
+
+largest = arr[0]
+
+for i in arr:
+    if i > largest:
+        largest = i
+
+print("Largest element:", largest)
+
+
+PROBLEM 6
+ROTATE ARRAY BY ONE POSITION (CLOCKWISE)
+
+arr = [1, 2, 3, 4, 5]
+
+last = arr[-1]
+
+for i in range(len(arr) - 1, 0, -1):
+    arr[i] = arr[i - 1]
+
+arr[0] = last
+
+print("Rotated array:", arr)
+
+
+
+PROBLEM 7
+MAXIMUM SUM SUBARRAY
+
+arr = [2, 3, -8, 7, -1, 2, 3]
+
+max_sum = arr[0]
+current_sum = arr[0]
+
+for i in range(1, len(arr)):
+    current_sum = max(arr[i], current_sum + arr[i])
+    max_sum = max(max_sum, current_sum)
+
+print("Maximum subarray sum:", max_sum)
+
+PROBLEM 8 
+SEARCH INSERT POSITION
+
+nums = [1, 3, 5, 6]
+target = 5
+
+low = 0
+high = len(nums) - 1
+
+while low <= high:
+    mid = (low + high) // 2
+    if nums[mid] == target:
+        print("Index:", mid)
+        break
+    elif nums[mid] < target:
+        low = mid + 1
+    else:
+        high = mid - 1
+else:
+    print("Insert position:", low)
+
+PROBLEM 9
+TWO SUM PROBLEM
+
+nums = [2, 7, 11, 15]
+target = 9
+
+for i in range(len(nums)):
+    for j in range(i + 1, len(nums)):
+        if nums[i] + nums[j] == target:
+            print("Indices:", [i, j])
+            break
+
+
+PROBLEM 10
+MINIMUM NUMBER OF JUMPS TO REACH END
+
+arr = [1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9]
+
+n = len(arr)
+
+if n == 1:
+    print(0)
+elif arr[0] == 0:
+    print(-1)
+else:
+    jumps = 1
+    maxReach = arr[0]
+    step = arr[0]
+
+    for i in range(1, n):
+        if i == n - 1:
+            print(jumps)
+            break
+
+        maxReach = max(maxReach, i + arr[i])
+        step -= 1
+
+        if step == 0:
+            jumps += 1
+            if i >= maxReach:
+                print(-1)
+                break
+            step = maxReach - i
+
+
+PROBLEM 11
+Kth SMALLEST ELEMENT IN AN ARRAY
+
+arr = [10, 5, 4, 3, 48, 6, 2, 33, 53, 10]
+k = 4
+
+arr.sort()
+print("Kth smallest element:", arr[k - 1])
+
+
+PROBLEM 12
+MINIMIZE THE HEIGHT DIFFERENCE
+
+arr = [1, 5, 8, 10]
+k = 2
+
+n = len(arr)
+arr.sort()
+
+ans = arr[n - 1] - arr[0]
+
+small = arr[0] + k
+big = arr[n - 1] - k
+
+if small > big:
+    small, big = big, small
+
+for i in range(1, n - 1):
+    subtract = arr[i] - k
+    add = arr[i] + k
+
+    if subtract >= small or add <= big:
+        continue
+
+    if big - subtract <= add - small:
+        small = subtract
+    else:
+        big = add
+
+
+PROBLEM 13
+MINIMUM NUMBERS OF JUMPS TO REACH END
+
+arr = [1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9]
+
+n = len(arr)
+
+if n == 1:
+    print(0)
+elif arr[0] == 0:
+    print(-1)
+else:
+    jumps = 1
+    maxReach = arr[0]
+    steps = arr[0]
+
+    for i in range(1, n):
+        if i == n - 1:
+            print(jumps)
+            break
+
+        maxReach = max(maxReach, i + arr[i])
+        steps -= 1
+
+        if steps == 0:
+            jumps += 1
+            if i >= maxReach:
+                print(-1)
+                break
+            steps = maxReach - i
+print("Minimum difference:", min(ans, big - small))
+
+
+PROBLEM 14 
+FIND THE DUPLICATE NUMBER
+
+nums = [1, 3, 4, 2, 2]
+
+slow = nums[0]
+fast = nums[0]
+
+while True:
+    slow = nums[slow]
+    fast = nums[nums[fast]]
+    if slow == fast:
+        break
+
+slow = nums[0]
+while slow != fast:
+    slow = nums[slow]
+    fast = nums[fast]
+
+print("Duplicate number:", slow)
+
+
+PROBLEM 15
+MERGE TWO SORTED ARRAYS WITHOUT EXTRA SPACE
+
+a = [1, 5, 9, 10, 15, 20]
+b = [2, 3, 8, 13]
+
+n = len(a)
+m = len(b)
+
+i = n - 1
+j = 0
+
+while i >= 0 and j < m:
+    if a[i] > b[j]:
+        a[i], b[j] = b[j], a[i]
+    i -= 1
+    j += 1
+
+a.sort()
+b.sort()
+
+print("Array a:", a)
+print("Array b:", b)
